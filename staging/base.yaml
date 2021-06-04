@@ -27,5 +27,5 @@ spec:
                   - key: cloud.google.com/gke-nodepool
                     operator: In
                     values:
-                      - prod-pool-4
+                      - staging-pool
 
