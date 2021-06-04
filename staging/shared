@@ -1,0 +1,86 @@
+# Shared environmental variables across multiple services
+ENV=staging
+
+# gRPC Connection to sendbox auth
+SENDBOX_AUTH_GRPC_CLIENT_HOST=sendbox-auth-grpc
+SENDBOX_AUTH_GRPC_CLIENT_PORT=50051
+
+# gRPC Connection to sendbox payments
+SENDBOX_PAYMENTS_GRPC_CLIENT_HOST=sendbox-payments-grpc
+SENDBOX_PAYMENTS_GRPC_CLIENT_PORT=50051
+
+# gRPC Connection to sendbox escrow
+SENDBOX_ESCROW_GRPC_CLIENT_HOST=sendbox-escrow-grpc
+SENDBOX_ESCROW_GRPC_CLIENT_PORT=50051
+
+# gRPC Connection to sendbox shipping
+SENDBOX_SHIPPING_GRPC_CLIENT_HOST=sendbox-shipping2-grpc
+SENDBOX_SHIPPING_GRPC_CLIENT_PORT=50051
+
+# gRPC Connection to sendbox shipping
+SENDBOX_COMMS_GRPC_CLIENT_HOST=sendbox-comms-grpc
+SENDBOX_COMMS_GRPC_CLIENT_PORT=50051
+
+# gRPC Connection to sendbox review
+SENDBOX_REVIEWS_GRPC_CLIENT_HOST=sendbox-reviews-grpc
+SENDBOX_REVIEWS_GRPC_CLIENT_PORT=50051
+
+SENDBOX_WALLET_GRPC_CLIENT_HOST=sendbox-wallet-grpc
+SENDBOX_WALLET_GRPC_CLIENT_PORT=50051
+
+SENDBOX_DISCOVERY_GRPC_CLIENT_HOST=sendbox-discovery-grpc
+SENDBOX_DISCOVERY_GRPC_CLIENT_PORT=50051
+
+SENDBOX_FRANCHISE_GRPC_CLIENT_HOST=sendbox-franchise-agency-grpc
+SENDBOX_FRANCHISE_GRPC_CLIENT_PORT=50051
+
+SENDBOX_NEW_SHIPPING_GRPC_CLIENT_HOST=sendbox-shipping2-grpc
+SENDBOX_NEW_SHIPPING_GRPC_CLIENT_PORT=50051
+
+SENDBOX_COURIER_GRPC_CLIENT_HOST=sendbox-courier-grpc
+SENDBOX_COURIER_GRPC_CLIENT_PORT=50051
+
+SENDBOX_BILLING_GRPC_CLIENT_HOST=sendbox-billing-grpc
+SENDBOX_BILLING_GRPC_CLIENT_PORT=50051
+
+SENDBOX_DISPATCH_GRPC_CLIENT_HOST=sendbox-dispatch-grpc
+SENDBOX_DISPATCH_GRPC_CLIENT_PORT=50051
+
+REDIS_URL=redis://staging-redis-v1-master.sendbox-redis.svc.cluster.local
+
+CELERY_BROKER_URL=redis://staging-redis-v1-master.sendbox-redis.svc.cluster.local
+CELERY_RESULT_BACKEND=redis://staging-redis-v1-master.sendbox-redis.svc.cluster.local
+
+#REDIS_URL=redis://production-redis-master.sendbox-redis.svc.cluster.local:6379/1
+
+#CELERY_BROKER_URL=redis://production-redis-master.sendbox-redis.svc.cluster.local:6379/2
+#CELERY_RESULT_BACKEND=redis://production-redis-master.sendbox-redis.svc.cluster.local:6379/3
+
+GRPC_MAX_THREAD_WORKERS=100
+GRPC_SERVER_PORT=50051
+GRPC_SERVER_SLEEP_TIME=86400
+GRPC_MAX_CONC_RPC=500
+
+FIREBASE_ANDROID_PACKAGE_NAME=com.sendbox.android
+FIREBASE_IOS_BUNDLE_ID=com.sendbox.ios
+FIREBASE_API_KEY=AIzaSyDnRkkbTr0IPkSHYbA7hO34K8xIlxvmCvE
+FIREBASE_DOMAIN_URI_PREFIX=https://link.sendbox.co
+
+DB_HOST=pg-sqlproxy-gcloud-sqlproxy.sqlproxy
+MONGO_HOST=mongodb-staging-00
+MONGODB_HOST=mongodb-staging-00
+MONGO_BASE=mongodb
+MONGO_URI_PARAMS=&authSource=admin&authMechanism=SCRAM-SHA-1
+
+C_FORCE_ROOT=true
+ADMIN_EMAIL=admin@sendbox.ng
+AUTH_SOURCE=key_store
+GRAPH_URI=https://admin-graph.staging.sendbox.co/graphql
+
+SENDBOX_ESCROW_WEB_BASE_URL=http://sendbox-escrow-internal:8082
+SENDBOX_DISPATCH_WEB_BASE_URL=http://sendbox-dispatch-internal:8082
+SENDBOX_SHIPPING_WEB_BASE_URL=http://sendbox-shipping2-internal:8082
+SENDBOX_PAYMENTS_WEB_BASE_URL=http://sendbox-payments-internal:8085
+
+ES_HOST=elasticsearch-staging-00
+BUGSNAG_RELEASE_STAGE=staging

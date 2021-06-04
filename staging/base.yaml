@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sendbox-auth
+spec:
+  selector:
+    matchLabels:
+      app: sendbox-auth
+  template:
+    spec:
+      containers:
+        - name: sendbox-auth-web
+#          imagePullPolicy: Always
+          image: gcr.io/sendbox-go/payments:v1.0.0
+        - name: sendbox-auth-grpc
+#          imagePullPolicy: Always
+          image: gcr.io/sendbox-go/auth:v1.0.0
+
+        - name: sendbox-oauth-web
+#          imagePullPolicy: Always
+          image: gcr.io/sendbox-go/auth:v1.0.0
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: cloud.google.com/gke-nodepool
+                    operator: In
+                    values:
+                      - prod-pool-4
+

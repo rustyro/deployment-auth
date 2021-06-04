@@ -1,0 +1,53 @@
+# staging.env
+# base setup variables to be used by application in various environments
+
+# database config. The export is optional
+MONGO_DATABASE=auth
+
+JWT_ALGORITHM=HS256
+JWT_ISSUER_CLAIM=sendbox.auth
+JWT_AUDIENCE_CLAIM=sendbox.auth
+JWT_EXPIRES_IN_HOURS=72
+
+API_SERVER_HOST=0.0.0.0
+API_SERVER_PORT=8080
+
+# GRPC_MAX_THREAD_WORKERS=20
+# GRPC_SERVER_PORT=50051
+# GRPC_SERVER_SLEEP_TIME=86400
+
+SENDBOX_SHIPPING_URL=http//api.staging.sendbox.co/shipping
+
+PASSWORD_RESET_URL=https://m.sendbox.co/password_reset
+VERIFICATION_URL=https://m.sendbox.co/verification
+INSTAGRAM_REDIRECT_URI=https://auth.staging.sendbox.co/socials
+INSTAGRAM_OAUTH_URL=https://api.instagram.com/oauth/authorize
+INSTAGRAM_ACCESS_TOKEN_URL=https://api.instagram.com/oauth/access_token
+INSTAGRAM_SCOPES=basic
+
+
+# FACEBOOK_REDIRECT_URI=https://m.sendbox.co/auth/social/facebook
+FACEBOOK_REDIRECT_URI=https://auth.staging.sendbox.co/socials
+FACEBOOK_OAUTH_URL=https://www.facebook.com/v4.0/dialog/oauth
+FACEBOOK_ACCESS_TOKEN_URL=https://graph.facebook.com/v3.2/oauth/access_token
+FACEBOOK_USER_DATA_URL=https://graph.facebook.com/me
+FACEBOOK_SCOPES=email,instagram_basic,pages_show_list,manage_pages,user_likes
+
+
+GOOGLE_OAUTH_URL=https://accounts.google.com/o/oauth2/v2/auth
+GOOGLE_REDIRECT_URI=https://auth.staging.sendbox.co/socials
+GOOGLE_OAUTH_ACCESS_TOKEN_URL=https://www.googleapis.com/oauth2/v4/token
+GOOGLE_SCOPES=openid email profile
+
+CACHE_TYPE=redis
+
+
+CHIMP_USERNAME=jaysins
+CHIMP_API_KEY=2af274e36888d7066439190590cd46f5-us20
+CHIMP_BASE_URI=https://us20.api.mailchimp.com/3.0
+
+RESET_EXPIRES_IN_HOURS=48
+SENDBOX_OAUTH_BASE=https://api.staging.sendbox.co/oauth
+
+CELERY_DEFAULT_QUEUE=sendbox.auth
+BUGSNAG_API_KEY=8bfcbf21a400b3d75cfdd1a0a875767b
