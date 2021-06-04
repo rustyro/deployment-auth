@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sendbox-auth
+  labels:
+    org: sendbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sendbox-auth
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 2
+  template:
+    metadata:
+      name: sendbox-auth
+      labels:
+        app: sendbox-auth
+        sendbox-redis-client: "true"
+        ver: v1.0.13
+    spec:
+      containers:
+        - name: sendbox-auth-web
+          imagePullPolicy: Always
+          image: gcr.io/sendbox-go/auth:s1.0.0
+          command: [ "uwsgi", "--plugins=python3,http", "--enable-threads", "--wsgi-file=api.py", "--callable=app",
+                     "--http-socket=0.0.0.0:8080", "--buffer-size=65535", "--master", "--processes=6", "--threads=3", "--die-on-term" ]
+          envFrom:
+            - configMapRef:
+                name: sendbox-auth
+            - configMapRef:
+                name: sendbox-shared
+            - secretRef:
+                name: sendbox-secrets
+          env:
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sendbox-secrets
+                  key: JWT_SECRET_KEY
+          ports:
+            - containerPort: 8080
+
+        - name: sendbox-auth-grpc
+          imagePullPolicy: Always
+          image: gcr.io/sendbox-go/auth:s1.0.0
+          command: [ "python3", "server.py" ]
+          envFrom:
+            - configMapRef:
+                name: sendbox-auth
+            - configMapRef:
+                name: sendbox-shared
+            - secretRef:
+                name: sendbox-secrets
+          ports:
+            - containerPort: 50051
+
+        - name: sendbox-oauth-web
+          imagePullPolicy: Always
+          image: gcr.io/sendbox-go/auth:s1.0.0
+          command: [ "uwsgi", "--plugins=python3,http", "--enable-threads", "--wsgi-file=oauth_api.py",
+                     "--callable=app", "--http-socket=0.0.0.0:8081", "--buffer-size=65535", "--master",
+                     "--processes=6", "--threads=3", "--die-on-term" ]
+          envFrom:
+            - configMapRef:
+                name: sendbox-oauth
+            - configMapRef:
+                name: sendbox-shared
+            - secretRef:
+                name: sendbox-secrets
+          env:
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sendbox-secrets
+                  key: OAUTH_JWT_SECRET_KEY
+          ports:
+            - containerPort: 8081
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: cloud.google.com/gke-nodepool
+                    operator: In
+                    values:
+                      - staging-pool
+#    spec:
+#      containers:
+#        - name: nm
+#      affinity:
+#        nodeAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            nodeSelectorTerms:
+#              - matchExpressions:
+#                  - key: cloud.google.com/gke-nodepool
+#                    operator: In
+#                    values:
+#                      - prod-pool-4
+
