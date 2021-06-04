@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - services.yaml
-#  - github.com/rustyro/config//base?ref=master
+  - base_config  # this dir will be populated with a git clone from an external command
 
 
 
