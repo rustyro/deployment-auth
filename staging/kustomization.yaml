@@ -12,9 +12,13 @@ namespace: staging
 
 configMapGenerator:
   - name: sendbox-auth
+    behavior: merge
     envs:
       - config
-      - shared
   - name: sendbox-oauth
     envs:
       - oauth
+  - name: sendbox-shared
+    behavior: merge
+    envs:
+      - shared

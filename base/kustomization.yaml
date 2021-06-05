@@ -6,5 +6,10 @@ resources:
   - services.yaml
   - base_config  # this dir will be populated with a git clone from an external command
 
+configMapGenerator:
+  - name: sendbox-auth
+    envs:
+      - config.env
+
 
 

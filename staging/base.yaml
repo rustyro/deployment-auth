@@ -10,15 +10,12 @@ spec:
     spec:
       containers:
         - name: sendbox-auth-web
-#          imagePullPolicy: Always
-          image: gcr.io/sendbox-go/payments:v1.0.0
+          image: gcr.io/sendbox-go/payments:s1.0.0
         - name: sendbox-auth-grpc
-#          imagePullPolicy: Always
-          image: gcr.io/sendbox-go/auth:v1.0.0
+          image: gcr.io/sendbox-go/auth:s1.0.0
 
         - name: sendbox-oauth-web
-#          imagePullPolicy: Always
-          image: gcr.io/sendbox-go/auth:v1.0.0
+          image: gcr.io/sendbox-go/auth:s1.0.0
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
