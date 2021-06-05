@@ -1,17 +1,6 @@
 
 # base setup variables to be used by application in various environments
 
-# database config. The export is optional
-MONGO_DATABASE=auth
-
-JWT_ALGORITHM=HS256
-JWT_ISSUER_CLAIM=sendbox.auth
-JWT_AUDIENCE_CLAIM=sendbox.auth
-JWT_EXPIRES_IN_HOURS=72
-
-API_SERVER_HOST=0.0.0.0
-API_SERVER_PORT=8080
-
 SENDBOX_SHIPPING_URL=http//api.sendbox.co/shipping
 
 PASSWORD_RESET_URL=https://m.sendbox.co/password_reset
